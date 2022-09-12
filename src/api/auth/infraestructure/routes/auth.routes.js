@@ -5,6 +5,6 @@ import signInController from '../controllers/signIn.controller.js';
 const authRouter = Router();
 
 
-authRouter.post('/login', signInController);
+authRouter.post('/', signInController);
 
 export default authRouter;

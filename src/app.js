@@ -24,7 +24,7 @@ app.set('port', config.PORT);
 app.set('json spaces', 2);
 
 // Routes
-app.use('/auth', authRouter);
+app.use('/login', authRouter);
 app.use('/bills', billsRouter);
 
 
