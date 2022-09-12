@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  backend:
+    container_name: 'backend'
+    restart: unless-stopped
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '23003:3003'
+      - '23004:3004'

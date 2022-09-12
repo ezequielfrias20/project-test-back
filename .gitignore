@@ -1,0 +1,14 @@
+node_modules
+anxTools
+
+backup
+build
+uploads
+upload
+
+.git/
+.vscode/
+
+package-lock.json
+yarn.lock
+.env

@@ -1,0 +1,31 @@
+stages: # List of stages for jobs, and their order of execution
+  - build
+  - deploy
+
+variables:
+  TAG_LATEST: ceercle/$CI_COMMIT_REF_NAME:latest
+  TAG_COMMIT: ceercle/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
+
+docker-build:
+  stage: build
+  image: docker:latest
+  tags:
+    - bloomcker-ci
+  services:
+    - docker:dind
+  script:
+    - docker login -u ceercle -p $DOCKERHUB
+    - docker build -t $TAG_COMMIT -f Dockerfile .
+    - docker push $TAG_COMMIT
+  only:
+    - main
+
+deploy:
+  stage: deploy
+  image: bitnami/kubectl
+  tags:
+    - bloomcker-ci
+  script:
+    - kubectl get nodes
+  only:
+    - main
